@@ -1,0 +1,5 @@
+input #name
+//input //*[@name="last-name"]
+input form-control third_class
+//input //*[@custom-attr="phone"]
+//input (//*[@class="form-control second_class"])[2]
