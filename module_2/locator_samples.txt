@@ -1,5 +1,5 @@
-input #name
-//input //*[@name="last-name"]
-input form-control third_class
-//input //*[@custom-attr="phone"]
-//input (//*[@class="form-control second_class"])[2]
+input#first_name
+//input[@name="last_name"]
+input.email
+//input[@custom_attr="phone"]
+//input[contains(@class, 'addr')]
