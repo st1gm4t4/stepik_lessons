@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 def browser(request):
     browser = None
     options = Options()
-    options.add_argument("--start-maximized")
+    options.add_argument("--kiosk")
     browser = webdriver.Chrome(options=options)
     yield browser
     print("\nquit browser..")
