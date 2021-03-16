@@ -6,7 +6,8 @@ button_names = {
     'en-gb' : 'Add to basket',
     'de' : 'In Warenkorb legen',
     'da' : 'Læg i kurv',
-    'es' : 'Añadir al carrito'
+    'es' : 'Añadir al carrito',
+    'fr' : 'Ajouter au panier'
 }
 
 
