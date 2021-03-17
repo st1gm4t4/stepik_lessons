@@ -1,17 +1,10 @@
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 import pytest
-
+import uuid
 
 class TestProductPage():
-    def test_guest_can_add_product_to_basket(self, browser):
-        page = ProductPage(browser, link)
-        page.open()
-        page.add_to_basket()
-        page.solve_quiz_and_get_code()
-        page.should_be_success_message()
-        page.should_change_price()
-
     @pytest.mark.parametrize('promo_offer',
                              ["offer0", "offer1", "offer2", "offer3", "offer4", "offer5", "offer6",
                               pytest.param("offer7", marks=pytest.mark.skip), "offer8",
@@ -24,20 +17,6 @@ class TestProductPage():
         page.solve_quiz_and_get_code()
         page.should_be_success_message()
         page.should_change_price()
-
-    @pytest.mark.skip
-    def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
-        link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
-        page = ProductPage(browser, link)
-        page.open()
-        page.add_to_basket()
-        page.should_not_be_success_message()
-
-    def test_guest_cant_see_success_message(self, browser):
-        link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
-        page = ProductPage(browser, link)
-        page.open()
-        page.should_not_be_success_message()
 
     @pytest.mark.skip
     def test_message_disappeared_after_adding_product_to_basket(self, browser):
@@ -67,3 +46,38 @@ class TestProductPage():
         basket_page = BasketPage(browser, link)
         basket_page.go_to_basket_page()
         basket_page.should_be_empty_basket()
+
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/en-gb/accounts/login/'
+        register_page = LoginPage(browser, link)
+        register_page.open()
+        # зарегистрировать нового пользователя
+        email = f'{uuid.uuid4().hex}@mail.org'
+        password = 'Nots0simplepassWord'
+        register_page.register_new_user(email, password)
+        register_page.should_see_registration_success_message()
+        register_page.should_be_authorized_user()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.add_to_basket()
+        page.should_be_success_message()
+        page.should_change_price()
+
+    # @pytest.mark.skip
+    # def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
+    #     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+    #     page = ProductPage(browser, link)
+    #     page.open()
+    #     page.add_to_basket()
+    #     page.should_not_be_success_message()
+
+    # def test_guest_cant_see_success_message(self, browser):
+    #     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+    #     page = ProductPage(browser, link)
+    #     page.open()
+    #     page.should_not_be_success_message()
