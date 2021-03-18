@@ -2,16 +2,19 @@ from .base_page import BasePage
 from .locators import ProductPageLocators
 
 
-
 class ProductPage(BasePage):
     def add_to_basket(self):
         add_to_basket = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
         add_to_basket.click()
 
+    def should_be_alert(self):
+        assert self.browser.switch_to.alert, 'There is no alert'
+
     def should_be_success_message(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
         alert_text = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text
-        assert product_name in alert_text, "Product name mismatch"
+        product_name_in_alert = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_SUCCESS_MESSAGE).text
+        assert product_name == product_name_in_alert, "Product name mismatch"
 
     def should_change_price(self):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text.split(" ")[-1]
@@ -27,4 +30,3 @@ class ProductPage(BasePage):
     def should_be_disappeared_success_message(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
-

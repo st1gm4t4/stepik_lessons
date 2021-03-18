@@ -1,8 +1,6 @@
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from .base_page import BasePage
-from .locators import BasePageLocators
 from .locators import BasketPageLocators
+
 
 class BasketPage(BasePage):
     def should_be_empty_basket(self):

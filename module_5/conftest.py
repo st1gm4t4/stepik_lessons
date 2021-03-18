@@ -1,16 +1,18 @@
-import pytest
+import os
 from datetime import datetime
+
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
-
 def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default='en-GB',
+    parser.addoption('--language', action='store', default='en-gb',
                      help="Choose browser language. Default is 'en-GB'")
 
     parser.addoption('--browser', action='store', default="chrome",
                      help="Choose browser: chrome or firefox")
+
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -30,8 +32,11 @@ def browser(request):
     browser.maximize_window()
     yield browser
     print("\nquit browser..")
+    dir = 'screenshots'
+    if not os.path.exists(dir):
+        os.makedirs(dir)
     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    browser.save_screenshot(f'screenshot-{now}.png')
+    browser.save_screenshot(f'{dir}/screenshot-{now}.png')
     browser.quit()
 
 
