@@ -75,14 +75,14 @@ class TestUserAddToBasketFromProductPage():
         page.should_change_price()
 
     @pytest.mark.xfail
-    def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
+    def test_user_cant_see_success_message_after_adding_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
         page = ProductPage(browser, link)
         page.open()
         page.add_to_basket()
         page.should_not_be_success_message()
 
-    def test_guest_cant_see_success_message(self, browser):
+    def test_user_cant_see_success_message_before_purchase(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
         page = ProductPage(browser, link)
         page.open()
