@@ -1,0 +1,112 @@
+{
+  "uid" : "57f9ec4e0ec88255",
+  "name" : "test_guest_can_add_product_to_basket[offer7]",
+  "fullName" : "module_5.test_product_page.TestProductPage#test_guest_can_add_product_to_basket",
+  "historyId" : "8433857a769ecd2ca3eba03399b040cb",
+  "time" : {
+    "start" : 1616085775376,
+    "stop" : 1616085777721,
+    "duration" : 2345
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nAssertionError: Product name mismatch",
+  "statusTrace" : "self = <module_5.test_product_page.TestProductPage object at 0x7fdaa50d3e20>\nbrowser = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"76821fd8e13a3fb7bd2dcd33028f5a34\")>, promo_offer = 'offer7'\n\n    @pytest.mark.parametrize('promo_offer',\n                             [\"offer0\", \"offer1\", \"offer2\", \"offer3\", \"offer4\", \"offer5\", \"offer6\",\n                              pytest.param(\"offer7\", marks=pytest.mark.xfail), \"offer8\",\n                              \"offer9\"])\n    def test_guest_can_add_product_to_basket(self, browser, promo_offer):\n        browser.delete_all_cookies()\n        link = f\"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo={promo_offer}\"\n        page = ProductPage(browser, link)\n        page.open()\n        page.add_to_basket()\n        page.should_be_alert()\n        page.solve_quiz_and_get_code()\n>       page.should_be_success_message()\n\nmodule_5/test_product_page.py:23: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <module_5.pages.product_page.ProductPage object at 0x7fdaa50a0d90>\n\n    def should_be_success_message(self):\n        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text\n        alert_text = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text\n        product_name_in_alert = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_SUCCESS_MESSAGE).text\n>       assert product_name == product_name_in_alert, \"Product name mismatch\"\nE       AssertionError: Product name mismatch\n\nmodule_5/pages/product_page.py:17: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "browser",
+    "time" : {
+      "start" : 1616085773129,
+      "stop" : 1616085775375,
+      "duration" : 2246
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nAssertionError: Product name mismatch",
+    "statusTrace" : "self = <module_5.test_product_page.TestProductPage object at 0x7fdaa50d3e20>\nbrowser = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"76821fd8e13a3fb7bd2dcd33028f5a34\")>, promo_offer = 'offer7'\n\n    @pytest.mark.parametrize('promo_offer',\n                             [\"offer0\", \"offer1\", \"offer2\", \"offer3\", \"offer4\", \"offer5\", \"offer6\",\n                              pytest.param(\"offer7\", marks=pytest.mark.xfail), \"offer8\",\n                              \"offer9\"])\n    def test_guest_can_add_product_to_basket(self, browser, promo_offer):\n        browser.delete_all_cookies()\n        link = f\"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo={promo_offer}\"\n        page = ProductPage(browser, link)\n        page.open()\n        page.add_to_basket()\n        page.should_be_alert()\n        page.solve_quiz_and_get_code()\n>       page.should_be_success_message()\n\nmodule_5/test_product_page.py:23: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <module_5.pages.product_page.ProductPage object at 0x7fdaa50a0d90>\n\n    def should_be_success_message(self):\n        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text\n        alert_text = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text\n        product_name_in_alert = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_SUCCESS_MESSAGE).text\n>       assert product_name == product_name_in_alert, \"Product name mismatch\"\nE       AssertionError: Product name mismatch\n\nmodule_5/pages/product_page.py:17: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "6eae4e9f7fa93a6f",
+      "name" : "stdout",
+      "source" : "6eae4e9f7fa93a6f.txt",
+      "type" : "text/plain",
+      "size" : 75
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "browser::0",
+    "time" : {
+      "start" : 1616085777782,
+      "stop" : 1616085778399,
+      "duration" : 617
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "module_5"
+  }, {
+    "name" : "suite",
+    "value" : "test_product_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestProductPage"
+  }, {
+    "name" : "host",
+    "value" : "Dmitrijs-MacBook-Pro.local"
+  }, {
+    "name" : "thread",
+    "value" : "19327-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "module_5.test_product_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "promo_offer",
+    "value" : "'offer7'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "57f9ec4e0ec88255.json",
+  "parameterValues" : [ "'offer7'" ]
+}
