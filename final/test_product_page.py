@@ -1,7 +1,6 @@
 import uuid
 
 import pytest
-import time
 
 from .pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
@@ -54,18 +53,15 @@ class TestProductPage():
         basket_page.should_be_empty_basket()
 
     @pytest.mark.personal_tests
-    def test_guest_can_add_review(self, browser):
-        # Незарегистрированный пользователь может оставить отзыв
-        pass
-
-    @pytest.mark.personal_tests
     def test_guest_cant_add_to_wishlist(self, browser):
-        # Кнопка "Добавить к списку желаемого" недоступна
-        pass
+        link = "http://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.add_to_wishlist()
 
     @pytest.mark.personal_tests
     @pytest.mark.parametrize('search_string',
-                             ["python", "handbook",])
+                             ["python", "handbook", ])
     def test_guest_can_search(self, browser, search_string):
         link = "http://selenium1py.pythonanywhere.com/catalogue/"
         page = ProductPage(browser, link)
@@ -81,16 +77,6 @@ class TestProductPage():
         page.search_for_product(search_string)
         page.should_not_be_search_results()
 
-
-# class TestPagination():
-#     @pytest.fixture(scope="function", autouse=True)
-#     def count_pages(self, browser):
-#         # посчитать количество страниц по количеству продуктов
-#
-#         pass
-#     @pytest.mark.personal_tests
-#     def test_pagination(self, browser):
-#         pass
 
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
@@ -113,6 +99,12 @@ class TestUserAddToBasketFromProductPage():
         page.should_be_success_message()
         page.should_change_price()
 
+    def test_user_cant_add_to_wishlist(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.add_to_wishlist()
+
     @pytest.mark.xfail
     def test_user_cant_see_success_message_after_adding_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
@@ -126,13 +118,3 @@ class TestUserAddToBasketFromProductPage():
         page = ProductPage(browser, link)
         page.open()
         page.should_not_be_success_message()
-
-    @pytest.mark.personal_tests
-    def test_user_can_add_review(self, browser):
-        # Зарегистрированный пользователь может оставить отзыв
-        pass
-
-    @pytest.mark.personal_tests
-    def test_user_can_add_to_wishlist(self, browser):
-        # Кнопка "Добавить к списку желаемого" доступна
-        pass

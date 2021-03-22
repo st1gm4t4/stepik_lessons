@@ -40,3 +40,6 @@ class ProductPageLocators():
     TOTAL_PRICE = (By.CSS_SELECTOR, "div.basket-mini.pull-right.hidden-xs")
     TOTAL_PRICE_MESSAGE = (
     By.CSS_SELECTOR, "#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong")
+    ADD_TO_WISHLIST_BUTTON_REGISTERED = (By.CSS_SELECTOR, "#add_to_wishlist_form > button")
+    ADD_TO_WISHLIST_BUTTON = (By.CSS_SELECTOR, "div.col-sm-6.product_main > button")
+    ADDED_TO_WISHLIST_MESSAGE = (By.CSS_SELECTOR, "#messages > div > div")

@@ -13,6 +13,9 @@ def pytest_addoption(parser):
     parser.addoption('--browser', action='store', default="chrome",
                      help="Choose browser: chrome or firefox")
 
+    parser.addoption('--screenshots', action='store', default="off",
+                     help="Taking screenshots")
+
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -32,11 +35,13 @@ def browser(request):
     browser.maximize_window()
     yield browser
     print("\nquit browser..")
-    # dir = 'screenshots'
-    # if not os.path.exists(dir):
-    #     os.makedirs(dir)
-    # now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    # browser.save_screenshot(f'{dir}/screenshot-{now}.png')
+    screenshots = request.config.getoption("screenshots")
+    if screenshots == "on":
+        dir = 'screenshots'
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        browser.save_screenshot(f'{dir}/screenshot-{now}.png')
     browser.quit()
 
 

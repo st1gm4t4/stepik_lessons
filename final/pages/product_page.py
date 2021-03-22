@@ -18,18 +18,18 @@ class ProductPage(BasePage):
 
     def add_to_wishlist(self):
         if self.is_element_present(*BasePageLocators.USER_ICON):
-            # Зарегистрированный пользователь
-            pass
+            self.browser.find_element(*ProductPageLocators.ADD_TO_WISHLIST_BUTTON_REGISTERED).click()
+            message = self.browser.find_element(*ProductPageLocators.ADDED_TO_WISHLIST_MESSAGE).text
+            product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+            assert message == f"'{product_name}' was added to your wish list.", f"Got wrong message - {message}"
         else:
-            # Незарегистрированный пользователь
-            pass
+            assert not self.browser.find_element(*ProductPageLocators.ADD_TO_WISHLIST_BUTTON).is_enabled()
 
     def should_be_alert(self):
         assert self.browser.switch_to.alert, 'There is no alert'
 
     def should_be_success_message(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        alert_text = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text
         product_name_in_alert = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_SUCCESS_MESSAGE).text
         assert product_name == product_name_in_alert, "Product name mismatch"
 
