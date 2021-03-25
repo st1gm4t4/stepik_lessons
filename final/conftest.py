@@ -7,14 +7,14 @@ from selenium.webdriver.chrome.options import Options
 
 
 def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default='en-gb',
+    parser.addoption('--language', action='store', default='en-GB',
                      help="Choose browser language. Default is 'en-GB'")
 
     parser.addoption('--browser', action='store', default="chrome",
                      help="Choose browser: chrome or firefox")
 
     parser.addoption('--screenshots', action='store', default="off",
-                     help="Taking screenshots")
+                     help="Taking screenshots or not")
 
 
 @pytest.fixture(scope="function")
@@ -26,7 +26,7 @@ def browser(request):
     browser_name = request.config.getoption("browser")
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
-        browser = webdriver.Chrome()
+        browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")
         browser = webdriver.Firefox()

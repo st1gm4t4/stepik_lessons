@@ -81,7 +81,5 @@ class BasePage():
         assert search_string in search_result, "Got wrong search result"
 
     def should_not_be_search_results(self):
-        assert self.browser.find_element(*BasePageLocators.NOTHING_FOUND).text == "Found 0 results.", \
-            "Found some results"
         assert self.is_not_element_present(*BasePageLocators.SEARCH_RESULT), \
             "Found some items"

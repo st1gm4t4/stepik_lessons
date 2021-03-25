@@ -15,5 +15,5 @@ class BasketPage(BasePage):
         assert '/basket/' in self.browser.current_url, "Not basket url"
 
     def should_be_empty_basket_message(self):
-        message = self.browser.find_element(*BasketPageLocators.BASKET_IS_EMPTY_MESSAGE).text
-        assert message == "Your basket is empty. Continue shopping", "Basket is not empty"
+        message = self.browser.find_element(*BasketPageLocators.BASKET_IS_EMPTY_MESSAGE)
+        assert message, "Basket is not empty"

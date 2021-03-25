@@ -1,5 +1,0 @@
-input#first_name
-//input[@name="last_name"]
-input.email
-//input[@custom_attr="phone"]
-//input[contains(@class, 'addr')]

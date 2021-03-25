@@ -43,3 +43,6 @@ class ProductPageLocators():
     ADD_TO_WISHLIST_BUTTON_REGISTERED = (By.CSS_SELECTOR, "#add_to_wishlist_form > button")
     ADD_TO_WISHLIST_BUTTON = (By.CSS_SELECTOR, "div.col-sm-6.product_main > button")
     ADDED_TO_WISHLIST_MESSAGE = (By.CSS_SELECTOR, "#messages > div > div")
+    NOTIFY_ME_BUTTON = (By.CSS_SELECTOR, "#alert_form > button")
+    NOTIFY_ME_MESSAGE = (By.CSS_SELECTOR, "#messages > div > div")
+    NOTIFY_ME_EMAIL_FIELD = (By.CSS_SELECTOR, "#id_email")
