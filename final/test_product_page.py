@@ -53,7 +53,6 @@ class TestUserAddToBasketFromProductPage():
         email = f'{uuid.uuid4().hex}@mail.org'
         password = 'Nots0simplepassWord'
         register_page.register_new_user(email, password)
-        # register_page.should_see_registration_success_message()
         register_page.should_be_authorized_user()
         return email
 

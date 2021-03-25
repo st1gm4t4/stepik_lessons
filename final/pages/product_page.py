@@ -1,4 +1,3 @@
-import time
 from .base_page import BasePage
 from .locators import ProductPageLocators, BasePageLocators
 
@@ -7,15 +6,6 @@ class ProductPage(BasePage):
     def add_to_basket(self):
         add_to_basket = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
         add_to_basket.click()
-
-    def add_review(self):
-        if self.is_element_present(*BasePageLocators.USER_ICON):
-            # Зарегистрированный пользователь
-            pass
-        else:
-            # Незарегистрированный пользователь
-            pass
-
 
     def add_to_wishlist(self):
         if self.is_element_present(*BasePageLocators.USER_ICON):
